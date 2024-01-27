@@ -12,7 +12,7 @@ db=SQLAlchemy(app)
 @app.route("/")
 def index():
     return "Hello"
-
+# Creating Book class with display_info method to display book details
 class Book:
     def __init__(self, title, author, isbn):
         self.title = title
@@ -21,7 +21,7 @@ class Book:
 
     def display_info(self):
         return {"title": self.title, "author": self.author, "isbn": self.isbn}
-
+# Creating Library class with add_book,display_all_book,delete_book and search_book_by_title methods
 class Library:
     def __init__(self):
         self.books = []
@@ -45,7 +45,7 @@ class Library:
             if book.title == title:
                 return book
         return {"message": "Book Not Found"}
-
+# Creating Ebook which override Book class and adding file_format variable
 class EBook(Book):
     def __init__(self, title, author, isbn, file_format):
         super().__init__(title, author, isbn)
@@ -57,7 +57,7 @@ class EBook(Book):
         return info
 
 library = Library()
-
+#Creating APIs
 @app.route('/books', methods=['POST'])
 def add_book():
     data = request.get_json()
